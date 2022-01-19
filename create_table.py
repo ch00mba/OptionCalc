@@ -66,10 +66,8 @@ commands = (
    
 try:
     
-    
    # http://3.86.81.140
-  # statsEngine = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb')
-    statsEngine = create_engine('postgresql+psycopg2://postgres:example@3.86.81.140:5432/mydb')
+    statsEngine = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb')
     postgreSQLConnection = statsEngine.raw_connection()
     cur = postgreSQLConnection.cursor()
     # create table one by one
