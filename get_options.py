@@ -63,7 +63,7 @@ TQQQ220121P00270000
 tqqq_dates_exp = options.get_expiration_dates("tqqq")
 
 
-options.get_options_chain("tqqq", tqqq_dates_exp[1])
+opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[1])
 
 
 
