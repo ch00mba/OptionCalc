@@ -28,7 +28,6 @@ services:
     volumes:
       - postgres:/data/postgres
 
-
   pgweb:
     container_name: pgweb
     restart: always
