@@ -82,8 +82,13 @@ print(df)
 from sqlalchemy import create_engine
 engine = create_engine('postgresql://username:password@localhost:5432/mydatabase')
 
-df.to_sql('table_name', engine)
+df.to_sql(val, engine)
 
+#TODO
+
+# create one big table for everyting 
+
+# create table for each expiation puts and calls separately
 
 
 try:
