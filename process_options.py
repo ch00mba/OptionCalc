@@ -37,6 +37,11 @@ pd.set_option('display.expand_frame_repr', False);
 # put results to db
 
 
+#select * from "all_options" where "Contract Name" like '%C%'
+
+#select "Contract Name" from "all_options";
+
+
 # Print the DataFrame
 
 print(dataFrame)
