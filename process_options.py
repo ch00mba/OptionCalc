@@ -15,3 +15,8 @@ ts = int(time.time())
 # may be in milliseconds, try `ts /= 1000` in that case
 print(datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
 
+chain["calls"]
+ 
+chain["puts"]
+
+list(chain["calls"].columns.values)
