@@ -5,6 +5,8 @@ Spyder Editor
 This is a temporary script file.
 """
 
+"""
+
 import pandas as pd
 
 import pandas_datareader.data as web
@@ -28,18 +30,18 @@ import  pandas_datareader as pdr
 aapl = Options('aapl')
 calls = aapl.get_call_data() 
 
-#-----
+"""
+
 
 from yahoo_fin import options
-
+from sqlalchemy import create_engine
 import pandas as pd
-
-nflx_dates = options.get_expiration_dates("tqqq")
-
-
-#-----
+import time
 
 
+
+
+'''
 chain = options.get_options_chain("tqqq")
 
 
@@ -62,27 +64,55 @@ TQQQ220121C00275000
 TQQQ220121P00005000
 TQQQ220121P00270000
 
+'''
+
+statsEngine = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb')
+
+postgreSQLConnection = statsEngine.raw_connection()
+
 
 tqqq_dates_exp = options.get_expiration_dates("tqqq")
 
 
-opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[1])
+#opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[1])
 
 
 for i, val in enumerate(tqqq_dates_exp):
-    print(val)
+    timestamp = int(time.time())
+    #print(val)
     opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[i])
-    print(opt_data)
+    #print(opt_data)
+    df = pd.DataFrame(opt_data['calls'], columns=opt_data['calls'].keys())
+    
+    df['snapshot_time'] = timestamp # unix time
+
+    #print(df)
+    
+    df.to_sql(val, statsEngine, if_exists='append', index=False)
+    
+    df = pd.DataFrame(opt_data['puts'], columns=opt_data['puts'].keys())
+    
+    df['snapshot_time'] = timestamp # unix time
+    
+    df.to_sql(val, statsEngine, if_exists='append', index=False)
 
 
-df = pd.DataFrame(opt_data['calls'], columns=opt_data['calls'].keys())
-print(df)
+    
+    #df.to_sql(val, engine)
 
 
-from sqlalchemy import create_engine
-engine = create_engine('postgresql://username:password@localhost:5432/mydatabase')
 
-df.to_sql(val, engine)
+
+#statsEngine = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb')
+
+#postgreSQLConnection = statsEngine.raw_connection()
+
+#df.to_sql(val, statsEngine)
+
+postgreSQLConnection.close()
+
+
+
 
 #TODO
 
@@ -90,7 +120,7 @@ df.to_sql(val, engine)
 
 # create table for each expiation puts and calls separately
 
-
+'''
 try:
     
    # http://3.86.81.140
@@ -113,3 +143,4 @@ except (Exception, psycopg2.DatabaseError) as error:
 finally:
     if postgreSQLConnection is not None:
         postgreSQLConnection.close()
+'''
