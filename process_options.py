@@ -19,8 +19,6 @@ ts = int(time.time())
 print(datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
 
 
-
-
 alchemyEngine  = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb', pool_recycle=3600);
 
 dbConnection = alchemyEngine.connect();
@@ -36,7 +34,7 @@ pd.set_option('display.expand_frame_repr', False);
 # match them by timestamp 
 # get p/c volume
 # get p/c open interest 
-
+# put results to db
 
 
 # Print the DataFrame
