@@ -37,9 +37,6 @@ while True:
     time.sleep(900)
 
 
-
-
-
 #TODO
 
 # create one big table for everyting 
