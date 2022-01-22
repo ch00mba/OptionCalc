@@ -24,7 +24,19 @@ alchemyEngine  = create_engine('postgresql+psycopg2://postgres:example@172.17.0.
 dbConnection = alchemyEngine.connect();
 
 
-dataFrame = pd.read_sql("select * from \"ss_dataframe_final\"", dbConnection);
+#dataFrame = pd.read_sql("select * from \"Contract Name\"", dbConnection);
+
+dataFrame = pd.read_sql("select \"Contract Name\" from \"all_options\"", dbConnection);
+
+
+tickers = dataFrame.drop_duplicates()
+
+tickers["Contract Name"][1]
+
+# find expiration 
+
+
+# TQQQ240119P00245000
 
 pd.set_option('display.expand_frame_repr', False);
 
