@@ -26,10 +26,35 @@ dbConnection = alchemyEngine.connect();
 
 #dataFrame = pd.read_sql("select * from \"Contract Name\"", dbConnection);
 
+
+
+#--select * from all_options_test where exp_date >= now();
+
+
+
 dataFrame = pd.read_sql("select \"Contract Name\" from \"all_options\"", dbConnection);
 
 
 tickers = dataFrame.drop_duplicates()
+
+
+
+
+
+
+TQQQ240119P00245000
+
+import re
+
+with open('textfile.txt') as f:
+    a = f.readlines()
+    pattern = r'psnr_y:([\d.]+)'
+    for line in a:
+        print(re.search(pattern, line)[1])
+        
+        
+              
+psnr_y = TQQQ
 
 
 
@@ -106,3 +131,31 @@ chain["calls"]
 chain["puts"]
 
 list(chain["calls"].columns.values)
+
+
+
+
+        
+        singleString = df["Contract Name"][1]
+
+        pattern = "TQQQ(.*?)P"
+
+        substring = re.search(pattern, singleString).group(1)
+       
+        print(substring)
+
+        t = iter(substring)
+        date1 = '-'.join(a+b for a,b in zip(t, t))
+        date2 = "20" + date1
+
+        #input = date2
+          
+
+        #format = '%Y-%m-%d'
+          
+
+        #datetime1 = datetime.datetime.strptime(input, format)
+        
+        datetime1 = datetime.datetime.strptime(tqqq_dates_exp[1], '%B %d, %Y')
+        
+        
