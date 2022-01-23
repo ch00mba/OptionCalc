@@ -30,7 +30,7 @@ while True:
         df_calls['exp_date_unix'] = int(datetime1.date().strftime("%s"))
         
         df_calls.to_sql(val, statsEngine, if_exists='append', index=False)
-        df_calls.to_sql("all_options_test", statsEngine, if_exists='append', index=False)
+        df_calls.to_sql("all_options", statsEngine, if_exists='append', index=False)
 
 
 
