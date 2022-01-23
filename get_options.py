@@ -33,6 +33,11 @@ while True:
         df_calls.to_sql("all_options", statsEngine, if_exists='append', index=False)
 
 
+        put_call_r = [[timestamp, 100]]
+        
+        df = pd.DataFrame (put_call_r, columns = ['timestamp','put_call_ratio'], )
+        print (df)
+
 
         df_puts = pd.DataFrame(opt_data['puts'], columns=opt_data['puts'].keys())
         df_puts = df_puts.replace('-', 0)
