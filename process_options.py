@@ -56,7 +56,7 @@ date2 = "20" + date1
 import datetime
 
 input = date2
-  
+
 
 format = '%Y-%m-%d'
   
