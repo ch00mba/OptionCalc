@@ -35,7 +35,21 @@ dbConnection = alchemyEngine.connect();
 dataFrame = pd.read_sql("select \"Contract Name\" from \"all_options\"", dbConnection);
 
 
+# select * from all_options where exp_date >= now() and calls = 1;
+
+
 tickers = dataFrame.drop_duplicates()
+
+
+# total put/call ratio OI
+
+
+
+
+
+
+
+
 
 
 
