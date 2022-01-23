@@ -35,6 +35,42 @@ tickers["Contract Name"][1]
 
 # find expiration 
 
+singleString = tickers["Contract Name"][1]
+
+
+import re
+
+pattern = "TQQQ(.*?)C"
+
+substring = re.search(pattern, singleString).group(1)
+print(substring)
+
+
+
+s = '12345678'
+
+t = iter(substring)
+date1 = '-'.join(a+b for a,b in zip(t, t))
+date2 = "20" + date1
+
+
+import datetime
+
+input = date2
+  
+
+format = '%Y-%m-%d'
+  
+
+datetime = datetime.datetime.strptime(input, format)
+  
+
+print(datetime.date())
+
+
+
+# TQQQ220121C00006250
+
 
 # TQQQ240119P00245000
 
