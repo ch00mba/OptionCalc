@@ -38,6 +38,35 @@ df_calls = pd.read_sql("select * from all_options where exp_date >= now() and ca
 df_puts = pd.read_sql("select * from all_options where exp_date >= now() and calls = 0", dbConnection);
 
 oi_calls = df_calls["Open Interest"]
+
+
+df_calls["Open Interest"] = df_calls["Open Interest"].astype(int)
+df_puts["Open Interest"] = df_puts["Open Interest"].astype(int)
+
+
+df_calls["Open Interest"].sum()
+
+df_puts["Open Interest"].sum()
+
+
+PC = df_puts["Open Interest"].sum()/df_calls["Open Interest"].sum()
+
+
+# TODO 
+
+# how signal works in linux 
+
+
+
+oi_calls1 = oi_calls.astype(int)
+
+
+list1 = oi_calls.toList()
+
+
+df['Unique ID'] = df['Unique ID'].astype(int)
+
+
 oi_puts = df_puts["Open Interest"]
 
 # select * from all_options where exp_date >= now() and calls = 1;
