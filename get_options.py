@@ -23,7 +23,7 @@ while True:
         opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[i])
     
         df_calls = pd.DataFrame(opt_data['calls'], columns=opt_data['calls'].keys())
-        df_calls = df_calls.replace('-', 0.00)
+        df_calls = df_calls.replace('-', 0)
         df_calls['snapshot_time'] = timestamp # unix time
         df_calls['calls'] = 1
         df_calls['exp_date'] = datetime1
@@ -35,7 +35,7 @@ while True:
 
 
         df_puts = pd.DataFrame(opt_data['puts'], columns=opt_data['puts'].keys())
-        df_puts = df_puts.replace('-', 0.00)
+        df_puts = df_puts.replace('-', 0)
         df_puts['snapshot_time'] = timestamp # unix time
         df_puts['calls'] = 0
         df_puts['exp_date'] = datetime1
