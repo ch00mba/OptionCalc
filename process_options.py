@@ -12,11 +12,11 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
-ts = int(time.time())
+#ts = int(time.time())
 
 # if you encounter a "year is out of range" error the timestamp
 # may be in milliseconds, try `ts /= 1000` in that case
-print(datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
+#print(datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
 
 
 alchemyEngine  = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb', pool_recycle=3600);
@@ -32,8 +32,13 @@ dbConnection = alchemyEngine.connect();
 
 
 
-dataFrame = pd.read_sql("select \"Contract Name\" from \"all_options\"", dbConnection);
+#dataFrame = pd.read_sql("select \"Contract Name\" from \"all_options\"", dbConnection);
 
+df_calls = pd.read_sql("select * from all_options where exp_date >= now() and calls = 1", dbConnection);
+df_puts = pd.read_sql("select * from all_options where exp_date >= now() and calls = 0", dbConnection);
+
+oi_calls = df_calls["Open Interest"]
+oi_puts = df_puts["Open Interest"]
 
 # select * from all_options where exp_date >= now() and calls = 1;
 
