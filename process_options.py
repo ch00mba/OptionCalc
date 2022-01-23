@@ -31,6 +31,9 @@ dataFrame = pd.read_sql("select \"Contract Name\" from \"all_options\"", dbConne
 
 tickers = dataFrame.drop_duplicates()
 
+
+
+
 tickers["Contract Name"][1]
 
 # find expiration 
@@ -44,10 +47,6 @@ pattern = "TQQQ(.*?)C"
 
 substring = re.search(pattern, singleString).group(1)
 print(substring)
-
-
-
-s = '12345678'
 
 t = iter(substring)
 date1 = '-'.join(a+b for a,b in zip(t, t))
