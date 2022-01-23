@@ -10,6 +10,15 @@ import time
 
 
 
+# execution timer
+
+d = datetime.datetime.strptime('15:30','%H:%M')
+
+dnow = datetime.datetime.now()
+
+dnow.time() < d.time()
+
+
 while True:
     statsEngine = create_engine('postgresql+psycopg2://postgres:example@172.17.0.1:5432/mydb')
     postgreSQLConnection = statsEngine.raw_connection()
