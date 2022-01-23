@@ -24,10 +24,13 @@ while True:
 
         opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[i])
     
-        df = pd.DataFrame(opt_data['calls'], columns=opt_data['calls'].keys())
-        df = df.replace('-', 0.00)
-        df['snapshot_time'] = timestamp # unix time
-        
+        df_calls = pd.DataFrame(opt_data['calls'], columns=opt_data['calls'].keys())
+        df_calls = df.replace('-', 0.00)
+        df_calls['snapshot_time'] = timestamp # unix time
+        df_calls['calls'] = 1
+        df_calls['exp_date']
+        df_calls['exp_date_unix']
+        df_calls['strike']
         
         int(datetime1.date().strftime("%s"))
         
