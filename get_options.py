@@ -11,6 +11,15 @@ from yahoo_fin import stock_info
 
 
 
+# snapshot metrics to collect 
+
+# PC ratio oi and vol 
+
+# max pain oi and vol 
+
+# valuate bull spread call 5 10 30 $ move and bull put spread
+
+
 # get spot price 
 
 stock_info.get_live_price("aapl") # get spot price 
