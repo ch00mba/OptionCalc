@@ -7,8 +7,13 @@ from yahoo_fin import options
 from sqlalchemy import create_engine
 import pandas as pd
 import time
+from yahoo_fin import stock_info
 
 
+
+# get spot price 
+
+stock_info.get_live_price("aapl") # get spot price 
 
 # execution timer
 
@@ -17,6 +22,13 @@ d = datetime.datetime.strptime('15:30','%H:%M')
 dnow = datetime.datetime.now()
 
 dnow.time() < d.time()
+
+
+
+# days to expiration 
+dte = datetime1 - datetime.datetime.now()
+dte1 = int(dte.days)
+
 
 
 while True:
