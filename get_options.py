@@ -31,9 +31,6 @@ from yahoo_fin import stock_info
 
 
 
-
-stock_info.get_live_price("aapl") # get spot price 
-
 # execution timer
 
 d = datetime.datetime.strptime('15:30','%H:%M')
