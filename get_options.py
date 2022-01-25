@@ -40,13 +40,6 @@ dnow = datetime.datetime.now()
 dnow.time() < d.time()
 
 
-
-# days to expiration 
-dte = datetime1 - datetime.datetime.now()
-dte1 = int(dte.days)
-
-
-
 #while True:
     
     
@@ -67,6 +60,10 @@ for i, val in enumerate(tqqq_dates_exp):
 
     df_spot = [[timestamp, tqqq_spot]]
     df_spot1 = pd.DataFrame (df_spot, columns = ['timestamp','tqqq_spot'], )
+    
+    # days to expiration 
+    dte = datetime1 - datetime.datetime.now()
+    dte1 = int(dte.days)
 
 
     opt_data = options.get_options_chain("tqqq", tqqq_dates_exp[i])
@@ -77,6 +74,8 @@ for i, val in enumerate(tqqq_dates_exp):
     df_calls['calls'] = 1
     df_calls['exp_date'] = datetime1
     df_calls['exp_date_unix'] = int(datetime1.date().strftime("%s"))
+    df_calls['dte'] = dte1
+
     
     d1c = df_calls['Implied Volatility'].str.replace('%','').astype(float)
     
@@ -93,6 +92,8 @@ for i, val in enumerate(tqqq_dates_exp):
     df_puts['calls'] = 0
     df_puts['exp_date'] = datetime1
     df_puts['exp_date_unix'] = int(datetime1.date().strftime("%s"))
+    df_puts['dte'] = dte1
+
     
     d1p = df_puts['Implied Volatility'].str.replace('%','').astype(float)
     
@@ -111,7 +112,6 @@ for i, val in enumerate(tqqq_dates_exp):
     df_calls["Volume"] = df_calls["Volume"].astype(int)
     df_puts["Volume"] = df_puts["Volume"].astype(int)
     
-
         
     df_puts.to_sql(val, statsEngine, if_exists='append', index=False)
     df_puts.to_sql("all_options", statsEngine, if_exists='append', index=False)
