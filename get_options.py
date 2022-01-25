@@ -112,41 +112,43 @@ for i, val in enumerate(tqqq_dates_exp):
     df_puts["Volume"] = df_puts["Volume"].astype(int)
     
 
-    
-
-
-
-    
-
-    
-    #df_calls['Implied Volatility']= d1.astype(float)
-
-
-
-
-#Implied Volatility
-
-
-    put_call_r = [[timestamp, 100]]
-    
-    
-    
-    
-    
-    
-    # write to sql 
-    
-    
+        
     df_puts.to_sql(val, statsEngine, if_exists='append', index=False)
     df_puts.to_sql("all_options", statsEngine, if_exists='append', index=False)
     
     
     df_calls.to_sql(val, statsEngine, if_exists='append', index=False)
     df_calls.to_sql("all_options", statsEngine, if_exists='append', index=False)
-
-
-
     
+
+    # PC ratio OI
+    
+
+    put_call_r_oi = df_puts["Open Interest"].sum()/df_calls["Open Interest"].sum() # might need to add strike filter 
+
+    put_call_r_oi = [[timestamp, datetime1 ,put_call_r_oi]]
+    
+    df_pcoi = pd.DataFrame (put_call_r_oi, columns = ['timestamp', 'expiration','put_call_ratio_oi'], )
+  
+    df_pcoi.to_sql('PC_OI', statsEngine, if_exists='append', index=False)
+
+    # PC ratio VOL
+
+    put_call_r_vol = df_puts["Volume"].sum()/df_calls["Volume"].sum() # might need to add strike filter 
+
+    put_call_r_vol = [[timestamp, datetime1 ,put_call_r_vol]]
+        
+    df_pcvol = pd.DataFrame (put_call_r_oi, columns = ['timestamp', 'expiration','put_call_ratio_vol'], )
+
+    df_pcvol.to_sql('PC_VOL', statsEngine, if_exists='append', index=False)
+    
+    
+
+
+
+
+
+postgreSQLConnection.close()  
 
 
 
@@ -169,7 +171,7 @@ for i, val in enumerate(tqqq_dates_exp):
 
 
 
-    postgreSQLConnection.close()
+
 #    time.sleep(900)
 
 
