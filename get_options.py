@@ -114,26 +114,20 @@ for i, val in enumerate(tqqq_dates_exp):
     df_calls["Volume"] = df_calls["Volume"].astype(int)
     df_puts["Volume"] = df_puts["Volume"].astype(int)
     
-    df_calls["Implied Volatility"] = df_calls["Implied Volatility"].astype(float)
-    df_puts["Volume"] = df_puts["Volume"].astype(int)
+
     
 
 
 
     
-    df_calls = df_calls.replace('%', "0")
-    
-    
-    d1 = df_calls['Implied Volatility'].str.replace('%','').astype(float)
-    
-    df_calls['IV'] = d1
+
     
     #df_calls['Implied Volatility']= d1.astype(float)
 
 
 
 
-Implied Volatility
+#Implied Volatility
 
 
     put_call_r = [[timestamp, 100]]
